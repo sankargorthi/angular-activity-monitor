@@ -37,6 +37,7 @@
             enabled: false, /* is the ActivityMonitor enabled? */
             keepAlive: 800, /* keepAlive ping invterval (seconds) */
             inactive: 900,  /* how long until user is considered inactive? (seconds) */
+            disableWhenInactive: true, /* should we stop monitoring after the first inactivity event? */
             warning: 60,    /* when to warn user when nearing inactive state (deducted from inactive in seconds) */
             monitor: 3,     /* how frequently to check if the user is inactive (seconds) */
             DOMevents: ['mousemove', 'mousedown', 'mouseup', 'keypress', 'wheel', 'touchstart', 'scroll'] /* list of DOM events to determine user's activity */
@@ -103,7 +104,9 @@
                 if (service.user.active && service.user.action <= inactive) {
                     service.user.active = false;
                     publish(EVENT_INACTIVE);
-                    disable();
+                    if (service.options.disableWhenInactive) {
+                        disable();
+                    }
                 }
             }, service.options.monitor * MILLISECOND);
         }

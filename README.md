@@ -12,7 +12,7 @@ $ npm install --save angular-activity-monitor
 ```
 
 #### Usage:
-**Bower:** 
+**Bower:**
 ```js
 angular.module('myModule', ['ActivityMonitor']);
 MyController.$inject = ['ActivityMonitor'];
@@ -40,6 +40,7 @@ function MyController(ActivityMonitor) {
  * `enabled`: whether to regularly check for inactivity (default: `false`) [bool]
  * `keepAlive`: background execution frequency (default: `800`) [seconds]
  * `inactive`: how long until user is considered inactive (default: `900`) [seconds]
+ * `disableWhenInactive`: disable the ActivityMonitor when the first inactivity is detected (default: true) [bool]
  * `warning`: when user is nearing inactive state (deducted from inactive) (default: `60`) [seconds]
  * `DOMevents`: array of events on the DOM that count as user activity (default: `['mousemove', 'mousedown', 'mouseup', 'keypress', 'wheel', 'touchstart', 'scroll']`)
 
@@ -57,7 +58,7 @@ function MyController(ActivityMonitor) {
  * `keepAlive`: anything to execute (at the `Options.keepAlive` interval) so long as the user is active.
  * `warning`: when user is approaching inactive state
  * `inactive`: when user is officially considered inactive
- 
+
 #### How long until user is inactive?
 This can be configured by setting the `ActivityMonitor.options.inactive` property to the desired timeout (in seconds).
 
